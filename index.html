@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Bebeh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      color: #ff69b4;
+      margin-top: 30px;
+    }
+    .message {
+      font-size: 1.2em;
+      color: #444;
+      max-width: 700px;
+      margin: 20px auto;
+      background-color: #fff0f5;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .photo-placeholder {
+      width: 200px;
+      height: 200px;
+      background-color: #ffe6eb;
+      border: 3px dashed #ff69b4;
+      border-radius: 50%;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: italic;
+      color: #999;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday Bebeh 🎂💖</h1>
+
+  <div class="photo-placeholder">
+    <img src="photo.jpg" alt="Riddhima" style="width:200px; height:200px; border-radius:50%; border:3px solid pink;" />
+  </div>
+
+  <div class="message">
+    Dear Riddhima,<br><br>
+    On this beautiful day, I just want to say — you make the world brighter just by being in it. Your smile, your heart, your presence — everything about you is magical. 🎀<br><br>
+    I feel lucky every day to know you. May your year be filled with dreams come true, endless joy, and all the love you deserve. You are precious to me in ways words can’t fully express. 💫<br><br>
+    This little website is a piece of my heart — just for you.<br><br>
+    With love,<br>
+    <b>Harsh 💘</b>
+  </div>
+
+  <audio autoplay loop>
+    <source src="we_fell_in_love_in_october.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let w = (canvas.width = window.innerWidth);
+    let h = (canvas.height = window.innerHeight);
+    let hearts = [];
+    let colors = ["#ff69b4", "#ff1493", "#ffc0cb", "#fff", "#ffb6c1"];
+
+    for (let i = 0; i < 100; i++) {
+      hearts.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        size: Math.random() * 8 + 2,
+        speed: Math.random() * 1 + 0.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+      });
+    }
+
+    function drawHearts() {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < hearts.length; i++) {
+        let p = hearts[i];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        p.y -= p.speed;
+        if (p.y < -10) {
+          p.y = h + 10;
+          p.x = Math.random() * w;
+        }
+      }
+      requestAnimationFrame(drawHearts);
+    }
+    drawHearts();
+  </script>
+</body>
+</html>
